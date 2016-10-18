@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+package mathGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,10 +29,10 @@ public class TopMenu {
 	 * Creates 2 top menu options with radio options and checkbox items and
 	 * submenu.
 	 * 
-	 * @return menuBar object
+	 * @return
 	 */
 
-	public JMenuBar menu(MathGame mg) {
+	public JMenuBar menu(MathViewer viewer) {
 		JMenuBar menuBar;
 		JMenu menu;
 		JMenu submenu;
@@ -151,6 +151,7 @@ public class TopMenu {
 		ButtonGroup radiogroup4 = new ButtonGroup();
 
 		JRadioButtonMenuItem menuItemA1 = new JRadioButtonMenuItem("+");
+		menuItemA1.setSelected(true);
 		radiogroup4.add(menuItemA1);
 		submenu1.add(menuItemA1);
 		
@@ -178,103 +179,103 @@ public class TopMenu {
 
 		menuItemA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(0);
+				setInteger(0);
 			}
 		});
 
 		menuItemB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(1);
+				setInteger(1);
 			}
 		});
 
 		menuItemC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(2);
+				setInteger(2);
 			}
 		});
 
 		menuItemD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(3);
+				setInteger(3);
 			}
 		});
 
 		menuItemE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(4);
+				setInteger(4);
 			}
 		});
 
 		menuItemF.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(5);
+				setInteger(5);
 			}
 		});
 
 		menuItemG.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(6);
+				setInteger(6);
 			}
 		});
 
 		menuItemH.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(7);
+				setInteger(7);
 			}
 		});
 		
 		menuItemI.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(8);
+				setInteger(8);
 			}
 		});
 		
 		menuItemJ.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(9);
+				setInteger(9);
 			}
 		});
 		
 		menuItemK.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(10);
+				setInteger(10);
 			}
 		});
 		
 		menuItemL.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(11);
+				setInteger(11);
 			}
 		});
 		
 		menuItemM.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setInteger(12);
+				setInteger(12);
 			}
 		});
 		
 		menuItemA1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setOperand("+");
+				setOperand("+");
 			}
 		});
 
 		menuItemB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setOperand("-");
+				setOperand("-");
 			}
 		});
 
 		menuItemC1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setOperand("*");
+				setOperand("*");
 			}
 		});
 
 		menuItemD1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.gamePanel.setOperand("/");
+				setOperand("/");
 			}
 		});
 		
@@ -286,37 +287,37 @@ public class TopMenu {
 		
 		radioItemA.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.setImages("doggo.jpg");
+				setImages("doggo.jpg");
 			}
 		});
 
 		radioItemB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.setImages("duck.jpg");
+				setImages("duck.jpg");
 			}
 		});
 		
 		radioItemC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.setImages("sapce.jpg");	
+				setImages("sapce.jpg");	
 			}
 		});
 		
 		radioItemA1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.setSize(2,2);
+				setSize(2,2);
 			}
 		});
 
 		radioItemB1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.setSize(3,3);
+				setSize(3,3);
 			}
 		});
 		
 		radioItemC1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				mg.setSize(4,4);
+				setSize(4,4);
 			}
 		});
 
