@@ -4,6 +4,8 @@
 
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+
 import javax.swing.JPanel;
 
 /**
@@ -13,23 +15,14 @@ import javax.swing.JPanel;
 public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	GPanel[] gPanels;
-	String operand;
-	int i;
 	public GamePanel() {
 	}
 
-	public void addImagesEquations(Image[] imgs) {
+	public void addImagesEquations(BufferedImage[] imgs, String operand, int i) {
 		for(Image img : imgs){
 			add(new GPanel(img, operand, i));
 		}
 	}
 	
-	public void setOperand(String o){
-		this.operand = o;
-	}
-	
-	public void setInteger(int i){
-		this.i = i;
-	}
 	
 }

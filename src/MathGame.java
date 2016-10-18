@@ -23,10 +23,12 @@ public class MathGame extends JFrame {
 	public String fileName = "doggo.jpg";
 	public int rows = 2;
 	public int cols = 2;
+	public int i = 0;
+	public String operand = "+";
 	
 	private static final long serialVersionUID = 1L;
 	
-	public MathGame(Image[] imgs){
+	public MathGame(BufferedImage[] imgs){
 		setTitle("Math Games");
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +36,7 @@ public class MathGame extends JFrame {
 		setJMenuBar(topMenu.menu(this));
 		gamePanel = new GamePanel();
 		gamePanel.setLayout(new GridLayout(2, 2, 1, 1));
-		gamePanel.addImagesEquations(imgs);
+		gamePanel.addImagesEquations(imgs, operand, i);
 		ansField = new JTextField(30);
 		JButton submit = new JButton("Submit");
 		submit.addActionListener(new SubmitButton(ansField));
@@ -99,7 +101,7 @@ public class MathGame extends JFrame {
 
 		gamePanel = new GamePanel();
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
-		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false));
+		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
 		add(gamePanel, BorderLayout.CENTER);
 		repaint();
 	}
@@ -116,16 +118,24 @@ public class MathGame extends JFrame {
 		
 		gamePanel = new GamePanel();
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
-		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false));
+		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
 		add(gamePanel, BorderLayout.CENTER);
 		repaint();
+	}
+	
+	public void setOperand(String o){
+		this.operand = o;	
+	}
+	
+	public void setInteger(int i){
+		this.i = i;
 	}
 	
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		Image[] imgs = null;
+		BufferedImage[] imgs = null;
 		try {
 			imgs = splitImage("doggo.jpg", 2, 2, false);
 		} catch (Exception e) {
