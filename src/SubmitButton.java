@@ -11,16 +11,16 @@ import javax.swing.JTextField;
 
 public class SubmitButton implements ActionListener, KeyListener {
 
-    JTextField nameInput;
+    JTextField answer;
 
 
     public SubmitButton(JTextField textfield){
-        nameInput = textfield;
+        answer = textfield;
     }
 
     @Override
     public void actionPerformed(ActionEvent submitClicked) {
-
+    	int ans = Integer.parseInt(answer.getText());
         
     }
 

@@ -37,14 +37,6 @@ public class MathGame extends JFrame {
 		gamePanel = new GamePanel();
 		gamePanel.setLayout(new GridLayout(2, 2, 1, 1));
 		gamePanel.addImagesEquations(imgs, operand, i);
-		ansField = new JTextField(30);
-		JButton submit = new JButton("Submit");
-		submit.addActionListener(new SubmitButton(ansField));
-		submit.addKeyListener(new SubmitButton(ansField));
-		JPanel bottomPanel = new JPanel();
-		bottomPanel.add(ansField);
-		bottomPanel.add(submit);
-		add(bottomPanel, BorderLayout.SOUTH);
 		
 		add(gamePanel, BorderLayout.CENTER);
 		pack();
@@ -108,7 +100,7 @@ public class MathGame extends JFrame {
 	
 	/**
 	 * sets or resets size of game (4, 9, or 12)
-	 * @param rows
+	 * @param rows 
 	 * @param cols
 	 */
 	public void setSize(int rows, int cols){
@@ -125,10 +117,23 @@ public class MathGame extends JFrame {
 	
 	public void setOperand(String o){
 		this.operand = o;	
+		remove(gamePanel);	
+		gamePanel = new GamePanel();
+		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
+		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
+		add(gamePanel, BorderLayout.CENTER);
+		repaint();
 	}
 	
 	public void setInteger(int i){
 		this.i = i;
+		remove(gamePanel);	
+		gamePanel = new GamePanel();
+		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
+		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
+		add(gamePanel, BorderLayout.CENTER);
+		repaint();
+
 	}
 	
 	/**
