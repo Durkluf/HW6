@@ -44,7 +44,7 @@ public class GPanel extends JPanel {
 	int answer;
 	int userAns;
 	int count;
-	
+	boolean canContinue = true;
 	/**
 	 * 
 	 */
@@ -105,7 +105,8 @@ public class GPanel extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
 		if (!answered) {
-			if (working){
+			if (working) && (canContinue){
+				this.canContinue = false;
 				ansField.addActionListener(new AbstractAction() {
 					public void actionPerformed(ActionEvent e){
 						JTextField textField = (JTextField) e.getSource();
@@ -115,6 +116,7 @@ public class GPanel extends JPanel {
 						}else{
 							if (count == 2){
 								ansField.setText(Integer.toString(answer));
+								this.canContinue = true;
 							}else{
 								count++;
 							}
