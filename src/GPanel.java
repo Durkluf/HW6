@@ -2,8 +2,6 @@
  * 
  */
 
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,14 +10,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Random;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -44,7 +39,9 @@ public class GPanel extends JPanel {
 	int answer;
 	int userAns;
 	int count;
+	
 	boolean canContinue = true;
+	
 	/**
 	 * 
 	 */
@@ -106,23 +103,8 @@ public class GPanel extends JPanel {
 		Graphics2D g2 = (Graphics2D) g;
 		if (!answered) {
 			if (working && canContinue){
-				this.canContinue = false;
-				ansField.addActionListener(new AbstractAction() {
-					public void actionPerformed(ActionEvent e){
-						JTextField textField = (JTextField) e.getSource();
-						userAns = Integer.parseInt(textField.getText());
-						if (userAns == answer){
-							setAnswered(true);
-						}else{
-							if (count == 2){
-								ansField.setText(Integer.toString(answer));
-								canContinue = true;
-							}else{
-								count++;
-							}
-						}
-					}
-				});
+				CustomActionListener cAL = new CustomActionListener();
+				ansField.addActionListener(cAL);
 				g2.setColor(Color.lightGray);
 				g2.fillRect(0, 0, w, h);
 				g2.setPaint(Color.yellow);
@@ -130,7 +112,7 @@ public class GPanel extends JPanel {
 				g2.drawString(eqnString, w/3, h/2);
 				repaint();
 			}
-			else{
+			else if (!working){
 				g2.setColor(Color.darkGray);
 				g2.fillRect(0, 0, w, h);
 				repaint();
@@ -149,8 +131,9 @@ public class GPanel extends JPanel {
 		public void mouseClicked(MouseEvent event) {
 			Object source = event.getSource();
 			if (source instanceof JPanel){
-				JPanel panelPressed = (JPanel) source;
-				setWorking(true);
+				GPanel panelPressed = (GPanel) source;
+				panelPressed.setWorking(true);
+				
 			} else {
 				setWorking(false);
 			}
@@ -181,6 +164,26 @@ public class GPanel extends JPanel {
 			
 		}
 		
+	}
+	
+	class CustomActionListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e){
+			System.out.print("beginning");
+			JTextField textField = (JTextField) e.getSource();
+			userAns = Integer.parseInt(textField.getText());
+			if (userAns == answer){
+				setAnswered(true);
+			}else{
+				if (count == 2){
+					ansField.setText(Integer.toString(answer));
+					canContinue = true;
+				}else{
+					count++;
+				}
+			}
+		}
 	}
 }
 
