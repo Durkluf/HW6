@@ -3,7 +3,6 @@
  */
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.AbstractAction;
@@ -29,6 +29,7 @@ public class GPanel extends JPanel {
 	private Image img;
 	private boolean answered;
 	private boolean working;
+	private boolean othersWorking;
 	private int w;
 	private int h;
 	public JTextField ansField;
@@ -45,6 +46,8 @@ public class GPanel extends JPanel {
 	long endTime;
 	ArrayList<Long> times = new ArrayList<Long>();
 	
+	boolean done;
+	
 	/**
 	 * 
 	 */
@@ -55,6 +58,8 @@ public class GPanel extends JPanel {
 		this.rand = r.nextInt(12);
 		this.operand = operand;
 		this.i = i;
+		done = false;
+		othersWorking = false;
 		eqnString = i + operand + rand + "= ?";
 		this.answer = solveAnswer();
 		ansField = new JTextField(5);
@@ -81,16 +86,15 @@ public class GPanel extends JPanel {
 			answer = i - rand;
 		return answer;
 	}
-	
-	public int getAnswer(){
-		return answer;
-	}
-	
 	public long getTime(){
 		long sum = 0;
 		for (long x : times)
 			sum += x;
 		return sum;
+	}
+	
+	public int getAnswer(){
+		return answer;
 	}
 	
 	public String getEqnString(){
@@ -108,7 +112,15 @@ public class GPanel extends JPanel {
 	public void setWorking(Boolean b){
 		working = b;
 	}
-	
+	public Boolean isWorking(){
+		return working;
+	}
+	public Boolean isDone(){
+		return done;
+	}
+	public void setOthersWorking(){
+		othersWorking = true;
+	}
 
 	public void paintComponent(Graphics g) {
 		Graphics2D g2 = (Graphics2D) g;
@@ -131,7 +143,7 @@ public class GPanel extends JPanel {
 			}
 		} else {
 			g2.drawImage(img, 0, 0, this);
-			((JFrame)SwingUtilities.getRoot(this)).setTitle("Testing GPanel");
+			done = true;
 			repaint();
 		} 
 	}
@@ -141,15 +153,11 @@ public class GPanel extends JPanel {
 
 		@Override
 		public void mouseClicked(MouseEvent event) {
-			Object source = event.getSource();
-			if (source instanceof JPanel){
-				GPanel panelPressed = (GPanel) source;
-				panelPressed.setWorking(true);
-				
+			if (!othersWorking){
+				setWorking(true);
 			} else {
 				setWorking(false);
 			}
-			
 			
 		}
 
@@ -183,6 +191,7 @@ public class GPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e){
+			System.out.print("beginning");
 			JTextField textField = (JTextField) e.getSource();
 			userAns = Integer.parseInt(textField.getText());
 			if (userAns == answer){
@@ -197,7 +206,6 @@ public class GPanel extends JPanel {
 					count++;
 				}
 			}
-		
 		}
 	}
 }

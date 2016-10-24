@@ -87,6 +87,8 @@ public class MathGame extends JFrame {
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
 		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
 		add(gamePanel, BorderLayout.CENTER);
+		setVisible(false);
+		setVisible(true);
 		repaint();
 	}
 	
@@ -104,6 +106,8 @@ public class MathGame extends JFrame {
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
 		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
 		add(gamePanel, BorderLayout.CENTER);
+		setVisible(false);
+		setVisible(true);
 		repaint();
 	}
 	
@@ -114,6 +118,8 @@ public class MathGame extends JFrame {
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
 		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
 		add(gamePanel, BorderLayout.CENTER);
+		setVisible(false);
+		setVisible(true);
 		repaint();
 	}
 	
@@ -124,8 +130,14 @@ public class MathGame extends JFrame {
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
 		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
 		add(gamePanel, BorderLayout.CENTER);
+		setVisible(false);
+		setVisible(true);
 		repaint();
 
+	}
+	public void endGame(){
+		setVisible(false);
+		dispose();
 	}
 	
 	/**
@@ -133,14 +145,28 @@ public class MathGame extends JFrame {
 	 */
 	public static void main(String[] args) {
 		BufferedImage[] imgs = null;
+		Boolean gaming = true;
 		try {
 			imgs = splitImage("doggo.jpg", 2, 2, false);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		MathGame mg = new MathGame(imgs);
+		while (gaming){
+			Boolean trigger = mg.gamePanel.isFinished();
+			if(trigger)
+				gaming = false;
+			try{
+				Thread.sleep(100);
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			
+			System.out.println(mg.gamePanel.isFinished());
+		}
+		mg.endGame();
+		System.out.println("closed");
 		
-
 	}
 	
 	
