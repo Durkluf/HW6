@@ -1,12 +1,7 @@
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +14,6 @@ import javax.imageio.ImageIO;
  */
 public class MathGame extends JFrame {
 	public GamePanel gamePanel;
-	private JTextField ansField;
 	public String fileName = "doggo.jpg";
 	public int rows = 2;
 	public int cols = 2;
@@ -89,8 +83,6 @@ public class MathGame extends JFrame {
 	public void setImages(String fileName) {
 		this.fileName = fileName;
 		remove(gamePanel);
-		//revalidate();
-
 		gamePanel = new GamePanel();
 		gamePanel.setLayout(new GridLayout(rows, cols, 1, 1));
 		gamePanel.addImagesEquations(splitImage(fileName, rows, cols, false), operand, i);
