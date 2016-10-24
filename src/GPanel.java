@@ -191,7 +191,8 @@ public class GPanel extends JPanel {
 
 		@Override
 		public void actionPerformed(ActionEvent e){
-			System.out.print("beginning");
+			System.out.println(e.getActionCommand());
+			System.out.println("beginning");
 			JTextField textField = (JTextField) e.getSource();
 			userAns = Integer.parseInt(textField.getText());
 			if (userAns == answer){

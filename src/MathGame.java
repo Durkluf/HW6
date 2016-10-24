@@ -162,7 +162,6 @@ public class MathGame extends JFrame {
 				e.printStackTrace();
 			}
 			
-			System.out.println(mg.gamePanel.isFinished());
 		}
 		mg.endGame();
 		System.out.println("closed");
